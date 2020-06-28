@@ -1,10 +1,9 @@
 import React, { Component } from "react";
  
 class About extends Component {
-  render() {
+  render(...props) {
     return (
       <div>
-        <h2>About</h2>
         <p>Facts about me:</p>
         <ul>
           <li>n/a</li>

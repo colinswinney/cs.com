@@ -1,32 +1,50 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   Route,
   NavLink,
+  Switch,
   BrowserRouter
-} from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Contact from "./Contact";
- 
+} from "react-router-dom"
+import { CSSTransition } from 'react-transition-group'
+import NoMatch from "./NoMatch.js"
+
 class Main extends Component {
-  render() {
+  render(props) {
     return (
       <BrowserRouter>
         <div>
-          
-          <ul className="header">
-            <li><NavLink exact to="/">Home</NavLink></li>
-            <li><NavLink to="/about">About</NavLink></li>
-            <li><NavLink to="/contact">Contact</NavLink></li>
-          </ul>
 
-          <h1>Colin Swinney</h1>
-
-          <div className="content">
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/contact" component={Contact}/>
-          </div>
+          <nav className={'navbar fixed-top justify-content-center'}>
+            <ul className={'nav'}>
+              {this.props.csdata['routes'].map((route, i) => (
+              <li className={'nav-item'} key={i}><NavLink className={'nav-link'} exact={route['exact']} to={route['path']}>{route['navTitle']}</NavLink></li>
+            ))}
+            </ul>
+          </nav>
+          {this.props.csdata['routes'].map((route, { path, contentClass, Component }) => (
+              <Route key={route.path} exact path={route.path} location={route.location}>
+                {({ match }) => (
+                  <CSSTransition
+                    in={match != null}
+                    timeout={300}
+                    classNames="content"
+                    unmountOnExit
+                  >
+                  <div className={`content ${route.contentClass}`}>
+                    <h2 className="content-title">{route.title}</h2>
+                    <div className="content-wrap">
+                      <div className="content-inner">
+                      <Switch>
+                        <Route render={ () => <route.Component {...route}/>}/>
+                      </Switch>
+                      </div>
+                    </div>
+                  </div>
+                  </CSSTransition>
+                )}
+              </Route>
+          ))}
+            
         </div>
       </BrowserRouter>
     );
