@@ -1,0 +1,67 @@
+.navbar {
+	@include transition-props;
+	background-color: transparent;
+	padding-top: 1px;
+
+	.nav-item {
+		padding: 0 1rem;
+
+		.nav-link {
+			padding: 0.5rem 0;
+			color: white;
+			font-size: 1.5rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			text-shadow: -3px 3px 1px rgba(0,0,0,0.1);
+			border-top: 5px solid transparent;
+
+			&:hover, &:focus, &:active {
+				color: #e6e6e6;
+				border-top: 5px solid #e6e6e6;
+			}
+
+			&.active {
+			  color: #e6e6e6;
+			  border-top: 5px solid #e6e6e6;
+			  cursor: default;
+			}
+		}
+
+		&.home {
+			position: absolute;
+			left: 0;
+
+			.nav-link{
+
+				&.active {
+				  color: white;
+				  border-top: 5px solid transparent;
+				  cursor: default;
+				}
+			}
+		}
+	}
+
+	&.cs-bg {
+		background-color: white;
+		box-shadow: -3px 3px 1px rgba(0,0,0,0.1);
+
+		.nav-item {
+			.nav-link {
+				color: #444;
+				text-shadow: none;
+
+				&:hover, &:focus, &:active {
+					color: #666;
+					border-top: 5px solid #666;
+				}
+
+				&.active {
+				  color: #666;
+				  border-top: 5px solid #666;
+				  cursor: default;
+				}
+			}
+		}
+	}
+}

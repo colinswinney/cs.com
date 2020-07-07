@@ -1,12 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/_variables.scss';
+import'bootstrap/dist/js/bootstrap.bundle.min';
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from "./Main";
-import "./Style.scss";
+import Layout from "./Layout";
+import "./styles/Style.scss";
 import csdata from './Csdata.js';
 
  
 ReactDOM.render(
-  <Main csdata={csdata}/>,
+  <Layout csdata={csdata}/>,
   document.getElementById("root")
 );
